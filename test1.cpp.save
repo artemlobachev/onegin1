@@ -10,12 +10,12 @@ void BubbleSort(void *arr, size_t elements, size_t MemSize, int (*comparator) (c
 
 int main()
 {
-    char a[3][32] = {"hellsdsaddasdao", "manfdgf", "fdsfgdsfdsfdsa" };
-    char b[3][32] = {"dsa23dsaw", "fsagwwr ewqewq", "ewqrqtfgskofsdko" };
+    char a[3][32] = {"hhfgd", "manfdgf", "fdsfgdsfdsfdsa" };
+    char b[3][32] = {"dsadsaw", "fsagwwr ewqewq", "ewqrqtfgskofsdko" };
     char SomeText[4][32] = {"alfred envelope" ,"alfred aoggins",
                                        "alfred Coogings","alfred DSbwens"};
     FILE *fp = fopen("test.txt", "r");
-    char *arr = (char *) calloc(sizeof(char), 35);
+    char *arr = (char *) calloc(sizeof(char), 70);
     fseek(fp, 0L, SEEK_END);
     int ba = ftell(fp);
     rewind(fp);
@@ -23,10 +23,12 @@ int main()
     printf("%d %d\n", numb, ba);
 
     puts(arr);
+    printf("\n%d\n\n", strcmpAnyRegist(a[0], b[0]) );  //a < b h < d
 
     puts(a[0]);
     puts(b[0]);
     swap(a[0], b[0], sizeof(a[0]));
+    printf("%u\n", sizeof(a[0]) );
     puts(a[0]);
     puts(b[0]);
 

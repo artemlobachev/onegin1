@@ -10,8 +10,8 @@ void BubbleSort(void *arr, size_t elements, size_t MemSize, int (*comparator) (c
 
 int main()
 {
-    char a[3][32] = {"hellsdsaddasdao", "manfdgf", "fdsfgdsfdsfdsa" };
-    char b[3][32] = {"dsa23dsaw", "fsagwwr ewqewq", "ewqrqtfgskofsdko" };
+    char a[3][32] = {"hhfgd", "manfdgf", "fdsfgdsfdsfdsa" };
+    char b[3][32] = {"dsadsaw", "fsagwwr ewqewq", "ewqrqtfgskofsdko" };
     char SomeText[4][32] = {"alfred envelope" ,"alfred aoggins",
                                        "alfred Coogings","alfred DSbwens"};
     FILE *fp = fopen("test.txt", "r");
@@ -23,10 +23,12 @@ int main()
     printf("%d %d\n", numb, ba);
 
     puts(arr);
+    printf("\n%d\n\n", strcmpAnyRegist(a[0], b[0]) );  //a < b h < d
 
     puts(a[0]);
     puts(b[0]);
     swap(a[0], b[0], sizeof(a[0]));
+    printf("%u\n", sizeof(a[0]) );
     puts(a[0]);
     puts(b[0]);
 
@@ -61,7 +63,7 @@ int strcmpAnyRegist(char *word1, char *word2)
     assert(word1 != NULL && word2 != NULL);
     assert(word1 != word2);
 
-    while (*word1++ != '\0' && *word2++ != '\0')
+    while (*word1 != '\0' && *word2 != '\0')
     {
         char charcmp1 = tolower(*word1);
         char charcmp2 = tolower(*word2);
@@ -70,6 +72,8 @@ int strcmpAnyRegist(char *word1, char *word2)
             return 1;
         if (charcmp1 < charcmp2)
             return -1;
+        word1++;
+        word2++;
     }
 
     return 0;
