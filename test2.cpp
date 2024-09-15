@@ -20,6 +20,7 @@ struct WorkWithText
 
 int GetInfoAboutText(WorkWithText *text, const char *FileName);
 void TextParser(char *text, char **StringPointers);
+void WriteOutFile(WorkWithText *text, const char *FileName);
 int CountNL(char *buffer);
 
 int main()
@@ -28,13 +29,21 @@ int main()
 
     GetInfoAboutText(&onegin, "test.txt");
     BubbleSort(onegin.StringPointers, onegin.NumbStrings, sizeof(char *), strcmpAnyRegist);
-    for (int i = 0; i < onegin.NumbStrings; i++)
-        puts(onegin.StringPointers[i]);
-    //WriteOutFile();
+    WriteOutFile(&onegin, "testout.txt  ");
 
     free(onegin.buffer);
     free(onegin.StringPointers);
+}
 
+void WriteOutFile(WorkWithText *text, const char *FileName)
+{
+    text->WriteFile = fopen(FileName, "wb");
+    
+    for (int i = 0; i < text->NumbStrings; i++)
+    {    
+        fwrite(text->StringPointers[i], sizeof(char), strlen(text->StringPointers[i]) , text->WriteFile);
+        fprintf(text->WriteFile, "\n");
+    }
 }
 
 int GetInfoAboutText(WorkWithText *text, const char *FileName)

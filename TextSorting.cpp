@@ -42,7 +42,6 @@ int strcmpAnyRegist(void *word1, void *word2)
     {
         char charcmp1 = tolower(*str1);
         char charcmp2 = tolower(*str2);
-        puts("dsadsa");
 
         if (charcmp1 > charcmp2)
             return 1;
@@ -63,6 +62,6 @@ void BubbleSort(void *arr, size_t elements, size_t ElemSize, int (*comparator) (
         for (int i = 0; i < elements - step - 1; i++)
         {   
             if (comparator(arr + i * ElemSize, arr + (i + 1) * ElemSize) > 0) // передаем &StringPointers[i]
-                swap(arr + i * ElemSize, arr + (i + 1) * ElemSize, sizeof(char *));
+                swap(arr + i * ElemSize, arr + (i + 1) * ElemSize, ElemSize);
         }
 }

@@ -14,6 +14,9 @@ int main()
     char b[3][32] = {"dsadsaw", "fsagwwr ewqewq", "ewqrqtfgskofsdko" };
     char SomeText[4][32] = {"alfred envelope" ,"alfred aoggins",
                                        "alfred Coogings","alfred DSbwens"};
+    char *c = "dasdsa";
+    printf("%u\n", sizeof(c) );
+
     FILE *fp = fopen("test.txt", "r");
     char *arr = (char *) calloc(sizeof(char), 70);
     fseek(fp, 0L, SEEK_END);

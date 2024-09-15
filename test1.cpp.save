@@ -14,6 +14,9 @@ int main()
     char b[3][32] = {"dsadsaw", "fsagwwr ewqewq", "ewqrqtfgskofsdko" };
     char SomeText[4][32] = {"alfred envelope" ,"alfred aoggins",
                                        "alfred Coogings","alfred DSbwens"};
+    const char *c = "dasdsa";
+    printf("%u\n", sizeof(c) );
+
     FILE *fp = fopen("test.txt", "r");
     char *arr = (char *) calloc(sizeof(char), 70);
     fseek(fp, 0L, SEEK_END);
@@ -63,7 +66,7 @@ int strcmpAnyRegist(char *word1, char *word2)
     assert(word1 != NULL && word2 != NULL);
     assert(word1 != word2);
 
-    while (*word1++ != '\0' && *word2++ != '\0')
+    while (*word1 != '\0' && *word2 != '\0')
     {
         char charcmp1 = tolower(*word1);
         char charcmp2 = tolower(*word2);
@@ -72,6 +75,8 @@ int strcmpAnyRegist(char *word1, char *word2)
             return 1;
         if (charcmp1 < charcmp2)
             return -1;
+        word1++;
+        word2++;
     }
 
     return 0;
