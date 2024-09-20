@@ -3,21 +3,29 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-struct FileStructInit
+
+struct StartEndPointers
+{
+    char *StartString;
+    char *EndString;
+};
+
+struct FileStruct
 {
     struct _stat FileInfo;
-
+    
     FILE *ReadFile;
     FILE *WriteFile;
     char *buffer;
     int NumbStrings;
     char **StringPointers;
+    StartEndPointers *arr;
 };
 
-int GetInfoAboutFile(FileStructInit *text, const char *FileName);
+int InitFileStruct(FileStruct *text, const char *FileName);
 int CountNewLines(char *buffer); // todo
-void TextParser(char *text, char **StringPointers);
-void WriteFile(FileStructInit *text, const char *FileName);
-void AllFree (FileStructInit *text);
+void TextParser(char *text, char **StringPointers, StartEndPointers *arr);
+void WriteFile(FileStruct *text, const char *FileName);
+void Destructor(FileStruct *text);
 
 #endif

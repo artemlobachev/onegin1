@@ -1,5 +1,9 @@
-ARtEm
-hELlo
+.ARtEm
+hello, how are you?
+hello. aow are you?
+.hELlo
 Is
-mY
+mr,sandy
+Mr.boris
+,mY
 NAme

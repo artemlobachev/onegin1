@@ -14,13 +14,13 @@ int main(int argc, const char *file[])
 {
     if (argc == 3)
     {
-        FileStructInit text = {0};
+        FileStruct Text = {0};
 
-        if (GetInfoAboutFile(&text, file[1]))
+        if (InitFileStruct(&Text, file[1]))
         {
-            BubbleSort(text.StringPointers, text.NumbStrings, sizeof(char *), CompareStrings);
-            WriteFile(&text, file[2]);
-            AllFree(&text);
+            BubbleSort(Text.StringPointers, Text.NumbStrings, sizeof(char *), CompareStrings);
+            WriteFile(&Text, file[2]);
+            Destructor(&Text);
         }
     }
     else
