@@ -9,27 +9,26 @@
 void swap(void *a, void *b, size_t MemorySize)
 {
     assert(a != NULL && b != NULL);
-    //assert(a != b);  IF
-
-    //char *a1 = *(char **) a;
-    //char *b1 = *(char **) b;
-    static const size_t BufferSize = 64;
-    char buffer[BufferSize];
-
-    for (size_t i = 0; MemorySize > BufferSize; i++)
+    if (a != b)
     {
-        MemorySize-= BufferSize;
-        memcpy(buffer, a, BufferSize);
-        memcpy(a, b, BufferSize);
-        memcpy(b, buffer, BufferSize);
+        static const size_t BufferSize = 64;
+        char buffer[BufferSize];
 
-        a += BufferSize;
-        b += BufferSize;
+        for (size_t i = 0; MemorySize > BufferSize; i++)
+        {
+            MemorySize-= BufferSize;
+            memcpy(buffer, a, BufferSize);
+            memcpy(a, b, BufferSize);
+            memcpy(b, buffer, BufferSize);
+
+            a += BufferSize;
+            b += BufferSize;
+        }
+
+        memcpy(buffer, a, MemorySize);
+        memcpy(a, b, MemorySize);
+        memcpy(b, buffer, MemorySize);
     }
-
-    memcpy(buffer, a, MemorySize);
-    memcpy(a, b, MemorySize);
-    memcpy(b, buffer, MemorySize);
 }
 
 //int ReverseCompareStrings(void *w)
@@ -37,7 +36,6 @@ void swap(void *a, void *b, size_t MemorySize)
 int CompareStrings(void *word1, void *word2)
 {
     assert(word1 != NULL && word2 != NULL);
-    // assert(word1 != word2);
 
     char *str1 = *(char **) word1;
     char *str2 = *(char **) word2;
