@@ -37,6 +37,7 @@ int CompareStringsStart(const void *word1, const void *word2)
 
     char *str1 = *(char **) word1;
     char *str2 = *(char **) word2;
+
     while (*str1 != '\0' || *str2 != '\0')
     { 
         if (isalpha(*str1) && isalpha(*str2))
@@ -105,6 +106,20 @@ void BubbleSort(void *arr, size_t elements, size_t ElemSize, int (*comparator) (
         }
 }
 
+void qsort1(void *array, int elements, size_t element_size, int (*comparator) (const void *, const void *))
+{
+    if (elements > 1)
+    {
+        int left_index = 0;
+        int right_index = elements - 1;
+
+        int pivot_index = partition(array, left_index, right_index, element_size, comparator);
+
+        qsort1(array, pivot_index + 1, element_size, comparator);  /*qsort for left elements less then pivot*/
+        qsort1((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator); /*qsort for right elements more then pivot*/
+    }
+}
+
 int partition(void *array, int left_index, int right_index, size_t element_size, int (*comparator) (const void *, const void *))
 {
     int middle_index = (right_index + left_index) / 2;   /*search middle index*/
@@ -134,18 +149,4 @@ int partition(void *array, int left_index, int right_index, size_t element_size,
         left_index++;
     }
     return right_index;
-}
-
-void qsort1(void *array, int elements, size_t element_size, int (*comparator) (const void *, const void *))
-{
-    if (elements > 1)
-    {
-        int left_index = 0;
-        int right_index = elements - 1;
-
-        int pivot_index = partition(array, left_index, right_index, element_size, comparator);
-
-        qsort1(array, pivot_index + 1, element_size, comparator);  /*qsort for left elements less then pivot*/
-        qsort1((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator); /*qsort for right elements more then pivot*/
-    }
 }

@@ -62,11 +62,12 @@ int CountNewLines(char *buffer)
     while (*buffer != '\0')
     {
         if (*buffer == '\n')
-        {
+
             count++;
-        }
+
         buffer++;
     }
+    
     return count;
 }
 
@@ -102,8 +103,10 @@ int WriteIntoFile(FileStruct *text, const char *FileName)
     
     for (int i = 0; i < text->NumbStrings; i++)
     {    
-        fwrite(text->pointer[i].StartString, sizeof(char), strlen(text->pointer[i].StartString) , text->WriteFile);
-        fprintf(text->WriteFile, "\n");
+        if (fwrite(text->pointer[i].StartString, sizeof(char), strlen(text->pointer[i].StartString) , text->WriteFile) == strlen(text->pointer[i].StartString))
+            fprintf(text->WriteFile, "\n");
+        else
+            return 0;
     }
     
     return 1;
