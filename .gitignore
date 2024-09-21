@@ -3,5 +3,6 @@
 *.dll
 *.gch
 *.out
+*.swp
 /build/
 ыфыф
