@@ -1,5 +1,5 @@
-.o
-.exe
-.dll
-.gch
-build/
+*.o
+*.exe
+*.dll
+*.gch
+*.out
