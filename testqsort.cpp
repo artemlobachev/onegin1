@@ -2,42 +2,36 @@
 #include <strings.h>
 #include <assert.h>
 
-void swap1(int *a, int *b)
-{
-    int c = *a;
-    *a = *b;
-    *b = c;    
-}
-
 void swap(void *a, void *b, size_t MemorySize)
 {
     assert(a != NULL && b != NULL);
-    //assert(a != b);
-
-    static const size_t BufferSize = 32;
-    char buffer[BufferSize];
-
-    for (size_t i = 0; MemorySize > BufferSize; i++)
+    if (a != b)
     {
-        MemorySize-= BufferSize;
-        memcpy(buffer, a, BufferSize);
-        memcpy(a, b, BufferSize);
-        memcpy(b, buffer, BufferSize);
+        static const size_t BufferSize = 32;
+        char buffer[BufferSize];
 
-        a += BufferSize;
-        b += BufferSize;
+        for (size_t i = 0; MemorySize > BufferSize; i++)
+        {
+            MemorySize-= BufferSize;
+            memcpy(buffer, a, BufferSize);
+            memcpy(a, b, BufferSize);
+            memcpy(b, buffer, BufferSize);
+
+            a += BufferSize;
+            b += BufferSize;
+        }
+
+        memcpy(buffer, a, MemorySize);
+        memcpy(a, b, MemorySize);
+        memcpy(b, buffer, MemorySize);
     }
-
-    memcpy(buffer, a, MemorySize);
-    memcpy(a, b, MemorySize);
-    memcpy(b, buffer, MemorySize);
+    else
+        puts("swap not works: same address");
 }
 
 int partition(void *arr, int l, int r, size_t size, int (*comparator) (void *, void *))
 {
     void *pivot = arr + (int) ( ((r + l) / 2) * size );
-    
-    //printf("%d ", *(int *)pivot);
     while (l <= r)
     {
         //printf("%d %d ", *(int *)(arr + (int) (size * l)), *(int *) (arr + (int) (size * r)));
@@ -48,6 +42,10 @@ int partition(void *arr, int l, int r, size_t size, int (*comparator) (void *, v
             r--; 
         if (l >= r)
             break;
+        if (pivot == (char *)arr + size * r )
+            pivot = (char *)arr + size * l;
+        else if (pivot == (char *)arr + size * l)
+            pivot = (char *)arr + size * r;
         swap(arr + (int) (size * r), arr + (int) (size * l), sizeof(int *));
         r--;
         l++;
@@ -68,7 +66,7 @@ void qsort(void *arr, int elements, size_t size, int (*comparator) (void *, void
         int r = elements - 1;
         //printf("%d ", r);
         int pivot_index = partition(arr, l, r, size, comparator);
-        printf("%d ", pivot_index);
+        //printf("%d ", pivot_index);
         //printf("%d ", pivot_index);
         int left_side_elements = pivot_index - l + 1;
         int right_side_elements = elements - left_side_elements;
@@ -85,6 +83,6 @@ int main()
     int arr[N] = {15, 6, 8, 2, 40, 3, 8};
     qsort(arr, N, sizeof(int), comp);
     for (int i = 0; i < N; i++)
-        ;//printf("%d ", arr[i]);
+        printf("%d ", arr[i]);
 
 }

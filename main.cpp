@@ -9,18 +9,18 @@
 #include "TextSorting.h"
 #include "FileWorks.h"
 
-
 int main(int argc, const char *file[]) 
 {
     if (argc == 3)
     {
-        FileStruct Text = {0};
+        FileStruct text = {0};
 
-        if (InitFileStruct(&Text, file[1]))
-        {
-            BubbleSort(Text.StringPointers, Text.NumbStrings, sizeof(char *), CompareStrings);
-            WriteFile(&Text, file[2]);
-            Destructor(&Text);
+        if (InitFileStruct(&text, file[1]))
+        {           
+            qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), ReCompareStrings);
+            //BubbleSort(text.pointer, text.NumbStrings, sizeof(StringPointers), ReCompareStrings); // &pointer[0]
+            WriteFile(&text, file[2]);
+            Destructor(&text);
         }
     }
     else

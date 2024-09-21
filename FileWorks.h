@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-struct StartEndPointers
+struct StringPointers
 {
     char *StartString;
     char *EndString;
@@ -18,13 +18,12 @@ struct FileStruct
     FILE *WriteFile;
     char *buffer;
     int NumbStrings;
-    char **StringPointers;
-    StartEndPointers *arr;
+    StringPointers *pointer;
 };
 
 int InitFileStruct(FileStruct *text, const char *FileName);
 int CountNewLines(char *buffer); // todo
-void TextParser(char *text, char **StringPointers, StartEndPointers *arr);
+void TextParser(char *text, StringPointers *pointer);
 void WriteFile(FileStruct *text, const char *FileName);
 void Destructor(FileStruct *text);
 

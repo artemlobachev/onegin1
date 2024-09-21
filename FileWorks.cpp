@@ -41,14 +41,13 @@ int InitFileStruct(FileStruct *text, const char *FileName)
 
     /*alloc and fill array of pointer-on-strings by TextParser*/
     text->NumbStrings = CountNewLines(text->buffer);
-    text->StringPointers = (char **) calloc(sizeof(char *), text->NumbStrings);
-    text->arr = (StartEndPointers *) calloc(sizeof(StartEndPointers), text->NumbStrings);
-    if (text->StringPointers == nullptr)
+    text->pointer = (StringPointers *) calloc(sizeof(StringPointers), text->NumbStrings);
+    if (text->pointer == nullptr)
     {
         perror("ALLOCATION ERROR: ");
         return 0;
     }
-    TextParser(text->buffer, text->StringPointers, text->arr);
+    TextParser(text->buffer, text->pointer);
     
     return 1;
 }
@@ -68,25 +67,24 @@ int CountNewLines(char *buffer)
     return count;
 }
 
-void TextParser(char *text, char **StringPointers, StartEndPointers *arr)
+void TextParser(char *text, StringPointers *pointer)
 {
-    assert(text != nullptr && StringPointers != nullptr);
+    assert(text != nullptr && pointer != nullptr);
 
     int i = 0, strindex = 0;
     
-    StringPointers[0] = &text[0];
-    arr->StartString = &text[0];
-
+    pointer[0].StartString = &text[0];
     while (text[i] != '\0' )
     {
         if (text[i] == '\n')
         {
-            arr->EndString = &text[i - 1];
+            pointer[strindex].EndString = &text[i - 1];
             text[i] = '\0';
             strindex++;
-            StringPointers[strindex] = &text[i + 1];
-            arr->StartString = &text[i + 1];
+            if (text[i + 1] != '\0')
+                pointer[strindex].StartString = &text[i + 1];
         }
+        
         i++;
     }
 }
@@ -97,23 +95,20 @@ void WriteFile(FileStruct *text, const char *FileName)
     
     for (int i = 0; i < text->NumbStrings; i++)
     {    
-        fwrite(text->StringPointers[i], sizeof(char), strlen(text->StringPointers[i]) , text->WriteFile);
+        fwrite(text->pointer[i].StartString, sizeof(char), strlen(text->pointer[i].StartString) , text->WriteFile);
         fprintf(text->WriteFile, "\n");
     }
-    
-    fclose(text->WriteFile);
-    text->WriteFile = nullptr;
 }
 
 void Destructor(FileStruct *text)
 {
     free(text->buffer);
-    free(text->StringPointers); //???
+    free(text->pointer);
     fclose(text->ReadFile);
     fclose(text->WriteFile);
     
     text->buffer = nullptr;
-    text->StringPointers = nullptr;
+    text->pointer = nullptr;
     text->ReadFile = nullptr;
     text->WriteFile = nullptr;
 }

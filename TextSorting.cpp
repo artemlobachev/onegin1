@@ -14,7 +14,7 @@ void swap(void *a, void *b, size_t MemorySize)
         static const size_t BufferSize = 64;
         char buffer[BufferSize];
 
-        for (size_t i = 0; MemorySize > BufferSize; i++)
+        while (MemorySize > BufferSize)
         {
             MemorySize-= BufferSize;
             memcpy(buffer, a, BufferSize);
@@ -31,9 +31,7 @@ void swap(void *a, void *b, size_t MemorySize)
     }
 }
 
-//int ReverseCompareStrings(void *w)
-
-int CompareStrings(void *word1, void *word2)
+int CompareStrings(const void *word1, const void *word2)
 {
     assert(word1 != NULL && word2 != NULL);
 
@@ -53,7 +51,7 @@ int CompareStrings(void *word1, void *word2)
             str1++;
             str2++;
         }
-        else if (isalpha(*str1) != 1)
+        else if (isalpha(*str1) == 0)
             str1++;
         else
             str2++;
@@ -61,12 +59,12 @@ int CompareStrings(void *word1, void *word2)
     return 0;
 }
 
-int ReCompareStrings(void *str1, void *str2) //str1 = &structure str2 = &structure +1
+int ReCompareStrings(const void *str1, const void *str2) //str1 = &structure str2 = &structure +1
 {
     assert(str1 != NULL && str2 != NULL);
 
-    StartEndPointers structure1 = *(StartEndPointers *) str1;
-    StartEndPointers structure2 = *(StartEndPointers *) str2;
+    StringPointers structure1 = *(StringPointers *) str1;
+    StringPointers structure2 = *(StringPointers *) str2;
 
     char *start1 = structure1.StartString;
     char *start2 = structure2.StartString;
@@ -88,7 +86,7 @@ int ReCompareStrings(void *str1, void *str2) //str1 = &structure str2 = &structu
             end1--;
             end2--;
         }
-        else if (isalpha(*end1) != 1)
+        else if (isalpha(*end1) == 0)
             end1--;
         else
             end2--;
@@ -96,12 +94,52 @@ int ReCompareStrings(void *str1, void *str2) //str1 = &structure str2 = &structu
     return 0;
 }
 
-void BubbleSort(void *arr, size_t elements, size_t ElemSize, int (*comparator) (void *, void *) )
+void BubbleSort(void *arr, size_t elements, size_t ElemSize, int (*comparator) (const void *, const void *) )
 {
     for (int step = 0; step < elements - 1; step++)
-        for (int i = 0; i < elements - step - 1; i++)
+        for (int i = 0; i < elements - step - 1; i++)   //arr = &pointer[0]
         {   
             if (comparator(arr + i * ElemSize, arr + (i + 1) * ElemSize) > 0) 
                 swap(arr + i * ElemSize, arr + (i + 1) * ElemSize, ElemSize);
         }
+}
+
+int partition(void *array, int left_index, int right_index, size_t element_size, int (*comparator) (const void *, const void *))
+{
+    int middle_index = (right_index + left_index) / 2;
+    char *char_array = (char *)array;
+    
+    void *pivot = char_array + middle_index * element_size;
+    while (left_index <= right_index)
+    {
+        while (comparator(char_array + element_size * left_index, pivot) < 0)
+            left_index++;
+        
+        while (comparator(char_array + element_size * right_index, pivot) > 0)
+            right_index--; 
+        
+        if (left_index >= right_index)
+            break;
+
+        swap(char_array + element_size * right_index, char_array + element_size * left_index, element_size);
+        
+        right_index--;
+        left_index++;
+    }
+    return right_index;
+}
+
+void qsort1(void *array, int elements, size_t element_size, int (*comparator) (const void *, const void *))
+{
+    if (elements > 1)
+    {
+        int left_index = 0;
+        int right_index = elements - 1;
+
+        int pivot_index = partition(array, left_index, right_index, element_size, comparator);
+
+        qsort1(array, pivot_index + 1, element_size, comparator);
+        qsort1((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator);
+    }
+    puts("Too low elements");
 }
