@@ -17,8 +17,8 @@ int main(int argc, const char *file[])
 
         if (InitFileStruct(&text, file[1]))
         {           
-            //qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsStart);
-            BubbleSort(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsStart);
+            qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsEnd);
+            //BubbleSort(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsStart);
             WriteIntoFile(&text, file[2]);
         }
         Destructor(&text);

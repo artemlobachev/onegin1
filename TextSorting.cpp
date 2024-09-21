@@ -125,7 +125,7 @@ int partition(void *array, int left_index, int right_index, size_t element_size,
         if (pivot == char_array + right_index * element_size)
             pivot = char_array + left_index * element_size;
         
-        if (pivot == char_array + left_index * element_size)
+        else if (pivot == char_array + left_index * element_size)
             pivot = char_array + right_index *element_size;
         
         swap(char_array + element_size * right_index, char_array + element_size * left_index, element_size);
