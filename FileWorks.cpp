@@ -13,7 +13,7 @@ int InitFileStruct(FileStruct *text, const char *FileName)
     text->ReadFile = fopen(FileName, "rb");
     if (text->ReadFile == nullptr)
     {
-        perror("FILE READING ERROR: ");
+        perror("FILE OPENING ERROR: ");
         return 0;
     }
 
@@ -32,10 +32,11 @@ int InitFileStruct(FileStruct *text, const char *FileName)
         perror("ALLOCATION ERROR: ");
         return 0;
     }
+
     size_t ReadBytes = fread(text->buffer, sizeof(char), TextMemorySize, text->ReadFile);
     if (ReadBytes != TextMemorySize) 
     {
-        perror("WRONG! ZERO BYTES READ: ");
+        perror("ERROR READING: ");
         return 0;
     }
 
@@ -54,6 +55,8 @@ int InitFileStruct(FileStruct *text, const char *FileName)
 
 int CountNewLines(char *buffer)
 {
+    assert(buffer != nullptr);
+
     int count = 0;
     
     while (*buffer != '\0')
@@ -84,20 +87,26 @@ void TextParser(char *text, StringPointers *pointer)
             if (text[i + 1] != '\0')
                 pointer[strindex].StartString = &text[i + 1];
         }
-        
         i++;
     }
 }
 
-void WriteFile(FileStruct *text, const char *FileName)
+int WriteIntoFile(FileStruct *text, const char *FileName)
 {
     text->WriteFile = fopen(FileName, "wb");
+    if (text->WriteFile == nullptr)
+    {
+        perror("WRITE FILE ERROR: ");
+        return 0;
+    }
     
     for (int i = 0; i < text->NumbStrings; i++)
     {    
         fwrite(text->pointer[i].StartString, sizeof(char), strlen(text->pointer[i].StartString) , text->WriteFile);
         fprintf(text->WriteFile, "\n");
     }
+    
+    return 1;
 }
 
 void Destructor(FileStruct *text)

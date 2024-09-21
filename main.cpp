@@ -17,11 +17,11 @@ int main(int argc, const char *file[])
 
         if (InitFileStruct(&text, file[1]))
         {           
-            qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), ReCompareStrings);
-            //BubbleSort(text.pointer, text.NumbStrings, sizeof(StringPointers), ReCompareStrings); // &pointer[0]
-            WriteFile(&text, file[2]);
-            Destructor(&text);
+            //qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsStart);
+            BubbleSort(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsStart);
+            WriteIntoFile(&text, file[2]);
         }
+        Destructor(&text);
     }
     else
         puts("Wrong! Files not entered!");

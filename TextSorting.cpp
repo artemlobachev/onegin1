@@ -31,7 +31,7 @@ void swap(void *a, void *b, size_t MemorySize)
     }
 }
 
-int CompareStrings(const void *word1, const void *word2)
+int CompareStringsStart(const void *word1, const void *word2)
 {
     assert(word1 != NULL && word2 != NULL);
 
@@ -59,7 +59,7 @@ int CompareStrings(const void *word1, const void *word2)
     return 0;
 }
 
-int ReCompareStrings(const void *str1, const void *str2) //str1 = &structure str2 = &structure +1
+int CompareStringsEnd(const void *str1, const void *str2) //str1 = &structure str2 = &structure +1
 {
     assert(str1 != NULL && str2 != NULL);
 
@@ -72,7 +72,7 @@ int ReCompareStrings(const void *str1, const void *str2) //str1 = &structure str
     char *end1 = structure1.EndString;
     char *end2 = structure2.EndString;
 
-    while (start1 != end1 || start2 != end2)
+    while (end1 != start1 || end2 != start2)
     {
         if (isalpha(*end1) && isalpha(*end2))
         {
@@ -83,6 +83,7 @@ int ReCompareStrings(const void *str1, const void *str2) //str1 = &structure str
                 return 1;
             if (charcmp1 < charcmp2)
                 return -1;
+            
             end1--;
             end2--;
         }
@@ -106,10 +107,10 @@ void BubbleSort(void *arr, size_t elements, size_t ElemSize, int (*comparator) (
 
 int partition(void *array, int left_index, int right_index, size_t element_size, int (*comparator) (const void *, const void *))
 {
-    int middle_index = (right_index + left_index) / 2;
+    int middle_index = (right_index + left_index) / 2;   /*search middle index*/
     char *char_array = (char *)array;
     
-    void *pivot = char_array + middle_index * element_size;
+    void *pivot = char_array + middle_index * element_size; /*pivot == middle element of array*/
     while (left_index <= right_index)
     {
         while (comparator(char_array + element_size * left_index, pivot) < 0)
@@ -121,6 +122,12 @@ int partition(void *array, int left_index, int right_index, size_t element_size,
         if (left_index >= right_index)
             break;
 
+        if (pivot == char_array + right_index * element_size)
+            pivot = char_array + left_index * element_size;
+        
+        if (pivot == char_array + left_index * element_size)
+            pivot = char_array + right_index *element_size;
+        
         swap(char_array + element_size * right_index, char_array + element_size * left_index, element_size);
         
         right_index--;
@@ -138,8 +145,7 @@ void qsort1(void *array, int elements, size_t element_size, int (*comparator) (c
 
         int pivot_index = partition(array, left_index, right_index, element_size, comparator);
 
-        qsort1(array, pivot_index + 1, element_size, comparator);
-        qsort1((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator);
+        qsort1(array, pivot_index + 1, element_size, comparator);  /*qsort for left elements less then pivot*/
+        qsort1((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator); /*qsort for right elements more then pivot*/
     }
-    puts("Too low elements");
 }

@@ -24,7 +24,7 @@ struct FileStruct
 int InitFileStruct(FileStruct *text, const char *FileName);
 int CountNewLines(char *buffer); // todo
 void TextParser(char *text, StringPointers *pointer);
-void WriteFile(FileStruct *text, const char *FileName);
+int WriteIntoFile(FileStruct *text, const char *FileName);
 void Destructor(FileStruct *text);
 
 #endif
