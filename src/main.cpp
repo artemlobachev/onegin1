@@ -17,7 +17,11 @@ int main(int argc, const char *file[])
 
         if (InitFileStruct(&text, file[1]))
         {           
-            qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsEnd);
+#ifdef END
+            qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsEnd); /* need flag END*/
+#else
+            qsort1(text.pointer, text.NumbStrings, sizeof(StringPointers), CompareStringsStart);
+#endif    
             WriteIntoFile(&text, file[2]);
         }
         Destructor(&text);

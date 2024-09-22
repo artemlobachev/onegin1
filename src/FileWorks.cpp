@@ -61,8 +61,7 @@ int CountNewLines(char *buffer)
     
     while (*buffer != '\0')
     {
-        if (*buffer == '\n')
-
+        if (*buffer == '\n') 
             count++;
 
         buffer++;
@@ -70,6 +69,7 @@ int CountNewLines(char *buffer)
     
     return count;
 }
+
 
 void TextParser(char *text, StringPointers *pointer)
 {
