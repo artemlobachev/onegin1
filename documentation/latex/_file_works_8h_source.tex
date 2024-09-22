@@ -1,0 +1,36 @@
+\doxysection{File\+Works.\+h}
+\hypertarget{_file_works_8h_source}{}\label{_file_works_8h_source}\index{C:/Users/1/Desktop/onegin1/include/FileWorks.h@{C:/Users/1/Desktop/onegin1/include/FileWorks.h}}
+\mbox{\hyperlink{_file_works_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FILEWORKS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FILEWORKS\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_string_pointers}{StringPointers}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{char}\ *StartString;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{char}\ *EndString;}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_file_struct}{FileStruct}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{struct\ }\_stat\ FileInfo;}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ FILE\ *ReadFile;}
+\DoxyCodeLine{00022\ \ \ \ \ FILE\ *WriteFile;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{char}\ *buffer;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ NumbStrings;}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{struct_string_pointers}{StringPointers}}\ *pointer;}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_file_works_8h_a5589bcf556f5efb33f5fb23f8ba89b99}{InitFileStruct}}(\mbox{\hyperlink{struct_file_struct}{FileStruct}}\ *text,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *FileName);}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_file_works_8h_a7761b5baf20d3a7f1b18e08ebacc2242}{CountNewLines}}(\textcolor{keywordtype}{char}\ *buffer);}
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_file_works_8h_a7b1916fa9af310e1a3f03d8a245fb86c}{TextParser}}(\textcolor{keywordtype}{char}\ *text,\ \mbox{\hyperlink{struct_string_pointers}{StringPointers}}\ *pointer);}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_file_works_8h_a74c160fb2e033734cc47ecdb5817de6a}{WriteIntoFile}}(\mbox{\hyperlink{struct_file_struct}{FileStruct}}\ *text,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *FileName);}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_file_works_8h_abd10290cdabf445e318e34412be4b862}{Destructor}}(\mbox{\hyperlink{struct_file_struct}{FileStruct}}\ *text);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

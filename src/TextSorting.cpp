@@ -14,6 +14,7 @@ void swap(void *a, void *b, size_t MemorySize)
         static const size_t BufferSize = 64;
         char buffer[BufferSize];
 
+        /*parse the parametrs a, b on the little part and recopy them */
         while (MemorySize > BufferSize)
         {
             MemorySize-= BufferSize;
@@ -31,12 +32,12 @@ void swap(void *a, void *b, size_t MemorySize)
     }
 }
 
-int CompareStringsStart(const void *word1, const void *word2)
+int CompareStringsStart(const void *string1, const void *string2)
 {
-    assert(word1 != NULL && word2 != NULL);
+    assert(string1 != NULL && string2 != NULL);
 
-    char *str1 = *(char **) word1;
-    char *str2 = *(char **) word2;
+    char *str1 = *(char **) string1;
+    char *str2 = *(char **) string2;
 
     while (*str1 != '\0' || *str2 != '\0')
     { 
@@ -60,12 +61,12 @@ int CompareStringsStart(const void *word1, const void *word2)
     return 0;
 }
 
-int CompareStringsEnd(const void *str1, const void *str2) //str1 = &structure str2 = &structure +1
+int CompareStringsEnd(const void *struct1, const void *struct2) 
 {
     assert(str1 != NULL && str2 != NULL);
 
-    StringPointers structure1 = *(StringPointers *) str1;
-    StringPointers structure2 = *(StringPointers *) str2;
+    StringPointers structure1 = *(StringPointers *) struct1;
+    StringPointers structure2 = *(StringPointers *) struct2;
 
     char *start1 = structure1.StartString;
     char *start2 = structure2.StartString;
@@ -137,6 +138,7 @@ int partition(void *array, int left_index, int right_index, size_t element_size,
         if (left_index >= right_index)
             break;
 
+    /*need for save information about pivot else pivot is change(but he should be const)*/
         if (pivot == char_array + right_index * element_size)
             pivot = char_array + left_index * element_size;
         

@@ -85,7 +85,7 @@ void TextParser(char *text, StringPointers *pointer)
             pointer[strindex].EndString = &text[i - 1];
             text[i] = '\0';
             strindex++;
-            if (text[i + 1] != '\0')
+            if (text[i + 1] != '\0')        /*else segmentation fault*/
                 pointer[strindex].StartString = &text[i + 1];
         }
         i++;
@@ -94,6 +94,7 @@ void TextParser(char *text, StringPointers *pointer)
 
 int WriteIntoFile(FileStruct *text, const char *FileName)
 {
+    /*Open file when should stored sorted text*/
     text->WriteFile = fopen(FileName, "wb");
     if (text->WriteFile == nullptr)
     {
@@ -101,6 +102,7 @@ int WriteIntoFile(FileStruct *text, const char *FileName)
         return 0;
     }
     
+    /*Write in file*/
     for (int i = 0; i < text->NumbStrings; i++)
     {    
         if (fwrite(text->pointer[i].StartString, sizeof(char), strlen(text->pointer[i].StartString) , text->WriteFile) == strlen(text->pointer[i].StartString))

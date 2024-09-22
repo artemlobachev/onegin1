@@ -1,0 +1,129 @@
+\doxysection{C\+:/\+Users/1/\+Desktop/onegin1/include/\+File\+Works.h File Reference}
+\hypertarget{_file_works_8h}{}\label{_file_works_8h}\index{C:/Users/1/Desktop/onegin1/include/FileWorks.h@{C:/Users/1/Desktop/onegin1/include/FileWorks.h}}
+
+
+Have all function that needed for the works with files(texts)  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_string_pointers}{String\+Pointers}}
+\item 
+struct \mbox{\hyperlink{struct_file_struct}{File\+Struct}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_file_works_8h_a5589bcf556f5efb33f5fb23f8ba89b99}{Init\+File\+Struct}} (\mbox{\hyperlink{struct_file_struct}{File\+Struct}} \texorpdfstring{$\ast$}{*}text, const char \texorpdfstring{$\ast$}{*}File\+Name)
+\begin{DoxyCompactList}\small\item\em Initilization file structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_file_works_8h_a7761b5baf20d3a7f1b18e08ebacc2242}{Count\+New\+Lines}} (char \texorpdfstring{$\ast$}{*}buffer)
+\begin{DoxyCompactList}\small\item\em Count new lines("{}\textbackslash{}n"{}) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_file_works_8h_a7b1916fa9af310e1a3f03d8a245fb86c}{Text\+Parser}} (char \texorpdfstring{$\ast$}{*}text, \mbox{\hyperlink{struct_string_pointers}{String\+Pointers}} \texorpdfstring{$\ast$}{*}pointer)
+\begin{DoxyCompactList}\small\item\em Get pointers on the start and end of strings and parsing text on a litte strings. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_file_works_8h_a74c160fb2e033734cc47ecdb5817de6a}{Write\+Into\+File}} (\mbox{\hyperlink{struct_file_struct}{File\+Struct}} \texorpdfstring{$\ast$}{*}text, const char \texorpdfstring{$\ast$}{*}File\+Name)
+\begin{DoxyCompactList}\small\item\em Writing into some file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_file_works_8h_abd10290cdabf445e318e34412be4b862}{Destructor}} (\mbox{\hyperlink{struct_file_struct}{File\+Struct}} \texorpdfstring{$\ast$}{*}text)
+\begin{DoxyCompactList}\small\item\em Destuctor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Have all function that needed for the works with files(texts) 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_file_works_8h_a7761b5baf20d3a7f1b18e08ebacc2242}\index{FileWorks.h@{FileWorks.h}!CountNewLines@{CountNewLines}}
+\index{CountNewLines@{CountNewLines}!FileWorks.h@{FileWorks.h}}
+\doxysubsubsection{\texorpdfstring{CountNewLines()}{CountNewLines()}}
+{\footnotesize\ttfamily \label{_file_works_8h_a7761b5baf20d3a7f1b18e08ebacc2242} 
+int Count\+New\+Lines (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buffer}{}\end{DoxyParamCaption})}
+
+
+
+Count new lines("{}\textbackslash{}n"{}) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buffer} & -\/ same text that stored in file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+how much is new lines 
+\end{DoxyReturn}
+\Hypertarget{_file_works_8h_abd10290cdabf445e318e34412be4b862}\index{FileWorks.h@{FileWorks.h}!Destructor@{Destructor}}
+\index{Destructor@{Destructor}!FileWorks.h@{FileWorks.h}}
+\doxysubsubsection{\texorpdfstring{Destructor()}{Destructor()}}
+{\footnotesize\ttfamily \label{_file_works_8h_abd10290cdabf445e318e34412be4b862} 
+void Destructor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_file_struct}{File\+Struct}} \texorpdfstring{$\ast$}{*}}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Destuctor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & -\/ close and free all allocated and open parameters \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_file_works_8h_a5589bcf556f5efb33f5fb23f8ba89b99}\index{FileWorks.h@{FileWorks.h}!InitFileStruct@{InitFileStruct}}
+\index{InitFileStruct@{InitFileStruct}!FileWorks.h@{FileWorks.h}}
+\doxysubsubsection{\texorpdfstring{InitFileStruct()}{InitFileStruct()}}
+{\footnotesize\ttfamily \label{_file_works_8h_a5589bcf556f5efb33f5fb23f8ba89b99} 
+int Init\+File\+Struct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_file_struct}{File\+Struct}} \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Initilization file structure. 
+
+get info about his size, how much new lines files have, pointers on start, end 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em text} & -\/ struct with all information about text \\
+\hline
+\mbox{\texttt{ in}}  & {\em File\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 -\/ if works well 0 -\/ else 
+\end{DoxyReturn}
+\Hypertarget{_file_works_8h_a7b1916fa9af310e1a3f03d8a245fb86c}\index{FileWorks.h@{FileWorks.h}!TextParser@{TextParser}}
+\index{TextParser@{TextParser}!FileWorks.h@{FileWorks.h}}
+\doxysubsubsection{\texorpdfstring{TextParser()}{TextParser()}}
+{\footnotesize\ttfamily \label{_file_works_8h_a7b1916fa9af310e1a3f03d8a245fb86c} 
+void Text\+Parser (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{\mbox{\hyperlink{struct_string_pointers}{String\+Pointers}} \texorpdfstring{$\ast$}{*}}]{pointer}{}\end{DoxyParamCaption})}
+
+
+
+Get pointers on the start and end of strings and parsing text on a litte strings. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em text} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em pointer} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_file_works_8h_a74c160fb2e033734cc47ecdb5817de6a}\index{FileWorks.h@{FileWorks.h}!WriteIntoFile@{WriteIntoFile}}
+\index{WriteIntoFile@{WriteIntoFile}!FileWorks.h@{FileWorks.h}}
+\doxysubsubsection{\texorpdfstring{WriteIntoFile()}{WriteIntoFile()}}
+{\footnotesize\ttfamily \label{_file_works_8h_a74c160fb2e033734cc47ecdb5817de6a} 
+int Write\+Into\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_file_struct}{File\+Struct}} \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{File\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Writing into some file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em text} & -\/ here stored Write\+File \\
+\hline
+\mbox{\texttt{ in}}  & {\em File\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 -\/ if works well 0 -\/ else ~\newline
+ 
+\end{DoxyReturn}

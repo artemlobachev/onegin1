@@ -1,0 +1,155 @@
+\doxysection{C\+:/\+Users/1/\+Desktop/onegin1/include/\+Text\+Sorting.h File Reference}
+\hypertarget{_text_sorting_8h}{}\label{_text_sorting_8h}\index{C:/Users/1/Desktop/onegin1/include/TextSorting.h@{C:/Users/1/Desktop/onegin1/include/TextSorting.h}}
+
+
+Have all function that needed for the sorting text.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_text_sorting_8h_a85ddd1212e3a0cd0f4750cb889ee1dab}{swap}} (void \texorpdfstring{$\ast$}{*}a, void \texorpdfstring{$\ast$}{*}b, size\+\_\+t Memory\+Size)
+\begin{DoxyCompactList}\small\item\em Swaps any input parametrs. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_text_sorting_8h_acbf9c98f1b62e2280b3d94c557608366}{Compare\+Strings\+Start}} (const void \texorpdfstring{$\ast$}{*}string1, const void \texorpdfstring{$\ast$}{*}string2)
+\begin{DoxyCompactList}\small\item\em Comparing strings by them starts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_text_sorting_8h_ae6d2fcd6a5ac9c773491be7e64a3ddec}{Compare\+Strings\+End}} (const void \texorpdfstring{$\ast$}{*}struct1, const void \texorpdfstring{$\ast$}{*}struct2)
+\begin{DoxyCompactList}\small\item\em Comparing strings by them ends. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_text_sorting_8h_a3f78ad7859f52dc0cac9f4dc4a67e327}{Bubble\+Sort}} (void \texorpdfstring{$\ast$}{*}arr, size\+\_\+t elements, size\+\_\+t Elem\+Size, int(\texorpdfstring{$\ast$}{*}comparator)(const void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*}))
+\begin{DoxyCompactList}\small\item\em Bubble sort. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_text_sorting_8h_aa57fc0c2240a045e4c5f8b08ea2dc0ac}{qsort1}} (void \texorpdfstring{$\ast$}{*}array, int elements, size\+\_\+t element\+\_\+size, int(\texorpdfstring{$\ast$}{*}comparator)(const void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*}))
+\begin{DoxyCompactList}\small\item\em Recursive quick sort. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_text_sorting_8h_ad4cac10a03e69ea2b606f70b40ce22e8}{partition}} (void \texorpdfstring{$\ast$}{*}array, int left\+\_\+index, int right\+\_\+index, size\+\_\+t element\+\_\+size, int(\texorpdfstring{$\ast$}{*}comparator)(const void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*}))
+\begin{DoxyCompactList}\small\item\em Parted array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Have all function that needed for the sorting text. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_text_sorting_8h_a3f78ad7859f52dc0cac9f4dc4a67e327}\index{TextSorting.h@{TextSorting.h}!BubbleSort@{BubbleSort}}
+\index{BubbleSort@{BubbleSort}!TextSorting.h@{TextSorting.h}}
+\doxysubsubsection{\texorpdfstring{BubbleSort()}{BubbleSort()}}
+{\footnotesize\ttfamily \label{_text_sorting_8h_a3f78ad7859f52dc0cac9f4dc4a67e327} 
+void Bubble\+Sort (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arr}{, }\item[{size\+\_\+t}]{elements}{, }\item[{size\+\_\+t}]{Elem\+Size}{, }\item[{int(\texorpdfstring{$\ast$}{*}}]{comparator~}{)(const void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*})}\end{DoxyParamCaption})}
+
+
+
+Bubble sort. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & -\/ array \\
+\hline
+\mbox{\texttt{ in}}  & {\em elements} & -\/ how much elements in array \\
+\hline
+\mbox{\texttt{ in}}  & {\em Elem\+Size} & -\/ the size of one elements of the array \\
+\hline
+\mbox{\texttt{ in}}  & {\em comparator} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_text_sorting_8h_ae6d2fcd6a5ac9c773491be7e64a3ddec}\index{TextSorting.h@{TextSorting.h}!CompareStringsEnd@{CompareStringsEnd}}
+\index{CompareStringsEnd@{CompareStringsEnd}!TextSorting.h@{TextSorting.h}}
+\doxysubsubsection{\texorpdfstring{CompareStringsEnd()}{CompareStringsEnd()}}
+{\footnotesize\ttfamily \label{_text_sorting_8h_ae6d2fcd6a5ac9c773491be7e64a3ddec} 
+int Compare\+Strings\+End (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{struct1}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{struct2}{}\end{DoxyParamCaption})}
+
+
+
+Comparing strings by them ends. 
+
+Comparing last letters by the rules of alphabet(from a to z), sometimes getting rhyme, skips not-\/letter symbols 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em struct1} & -\/ First structure that have pointers on the end of first string \\
+\hline
+\mbox{\texttt{ in}}  & {\em struct2} & -\/ Second structure that have pointers on the end of second string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 -\/ Last letters first string \texorpdfstring{$>$}{>} Last letters second string 0 -\/ else 
+\end{DoxyReturn}
+\Hypertarget{_text_sorting_8h_acbf9c98f1b62e2280b3d94c557608366}\index{TextSorting.h@{TextSorting.h}!CompareStringsStart@{CompareStringsStart}}
+\index{CompareStringsStart@{CompareStringsStart}!TextSorting.h@{TextSorting.h}}
+\doxysubsubsection{\texorpdfstring{CompareStringsStart()}{CompareStringsStart()}}
+{\footnotesize\ttfamily \label{_text_sorting_8h_acbf9c98f1b62e2280b3d94c557608366} 
+int Compare\+Strings\+Start (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{string1}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{string2}{}\end{DoxyParamCaption})}
+
+
+
+Comparing strings by them starts. 
+
+Comparing letters from the start strings, skips not-\/letter symbols 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em string1} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em string2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 -\/ string1 \texorpdfstring{$>$}{>} string2 0 -\/ else 
+\end{DoxyReturn}
+\Hypertarget{_text_sorting_8h_ad4cac10a03e69ea2b606f70b40ce22e8}\index{TextSorting.h@{TextSorting.h}!partition@{partition}}
+\index{partition@{partition}!TextSorting.h@{TextSorting.h}}
+\doxysubsubsection{\texorpdfstring{partition()}{partition()}}
+{\footnotesize\ttfamily \label{_text_sorting_8h_ad4cac10a03e69ea2b606f70b40ce22e8} 
+int partition (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array}{, }\item[{int}]{left\+\_\+index}{, }\item[{int}]{right\+\_\+index}{, }\item[{size\+\_\+t}]{element\+\_\+size}{, }\item[{int(\texorpdfstring{$\ast$}{*}}]{comparator~}{)(const void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*})}\end{DoxyParamCaption})}
+
+
+
+Parted array. 
+
+Get middle element(pivot) on the left side elements that \texorpdfstring{$<$}{<} pivot on the right side elements that \texorpdfstring{$>$}{>} pivot. After we get two arrays 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em array} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em left\+\_\+index} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em right\+\_\+index} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em element\+\_\+size} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em comparator} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_text_sorting_8h_aa57fc0c2240a045e4c5f8b08ea2dc0ac}\index{TextSorting.h@{TextSorting.h}!qsort1@{qsort1}}
+\index{qsort1@{qsort1}!TextSorting.h@{TextSorting.h}}
+\doxysubsubsection{\texorpdfstring{qsort1()}{qsort1()}}
+{\footnotesize\ttfamily \label{_text_sorting_8h_aa57fc0c2240a045e4c5f8b08ea2dc0ac} 
+void qsort1 (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array}{, }\item[{int}]{elements}{, }\item[{size\+\_\+t}]{element\+\_\+size}{, }\item[{int(\texorpdfstring{$\ast$}{*}}]{comparator~}{)(const void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*})}\end{DoxyParamCaption})}
+
+
+
+Recursive quick sort. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em array} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em elements} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em element\+\_\+size} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em comparator} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_text_sorting_8h_a85ddd1212e3a0cd0f4750cb889ee1dab}\index{TextSorting.h@{TextSorting.h}!swap@{swap}}
+\index{swap@{swap}!TextSorting.h@{TextSorting.h}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily \label{_text_sorting_8h_a85ddd1212e3a0cd0f4750cb889ee1dab} 
+void swap (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{b}{, }\item[{size\+\_\+t}]{Memory\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Swaps any input parametrs. 
+
+Create a char buffer with fix size, recopy by the while 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em Memory\+Size} & -\/ the size of element \\
+\hline
+\end{DoxyParams}
