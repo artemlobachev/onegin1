@@ -1,4 +1,4 @@
-**ONEGIN**\n
+**ONEGIN**\
 Need formated text **without blank strings**\n
 Someday i create that formater, but now... take care about that\n
 \n
