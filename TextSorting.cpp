@@ -12,7 +12,7 @@ void swap(void *a, void *b, size_t MemorySize)
     if (a != b)
     {
         static const size_t BufferSize = 64;
-        char buffer[BufferSize];
+        static char buffer[BufferSize];
 
         /*parse the parametrs a, b on the little part and recopy them */
         while (MemorySize > BufferSize)
@@ -32,41 +32,47 @@ void swap(void *a, void *b, size_t MemorySize)
     }
 }
 
-int CompareStringsStart(const void *string1, const void *string2)
+int CompareStringsStart(const void *StringStructure1, const void *StringStructure2)
 {
-    assert(string1 != NULL && string2 != NULL);
+    assert(StringStructure2 != NULL && StringStructure2 != NULL);
 
-    char *str1 = *(char **) string1;
-    char *str2 = *(char **) string2;
+    StringPointers structure1 = *(StringPointers *) StringStructure1;
+    StringPointers structure2 = *(StringPointers *) StringStructure2;
 
-    while (*str1 != '\0' || *str2 != '\0')
+    char *start1 = structure1.StartString;
+    char *start2 = structure2.StartString;
+
+    char *end1 = structure1.EndString;
+    char *end2 = structure2.EndString;
+
+    while (*start1 != *end1 || *start2 != *end2)
     { 
-        if (isalpha(*str1) && isalpha(*str2))
+        if (isalpha(*start1) && isalpha(*start2))
         {
-            char charcmp1 = tolower(*str1);
-            char charcmp2 = tolower(*str2);
+            char charcmp1 = tolower(*start1);
+            char charcmp2 = tolower(*start2);
 
             if (charcmp1 > charcmp2)
                 return 1;
             if (charcmp1 < charcmp2)
                 return -1;
-            str1++;
-            str2++;
+            start1++;
+            start2++;
         }
-        else if (isalpha(*str1) == 0)
-            str1++;
+        else if (isalpha(*start1) == 0)
+            start1++;
         else
-            str2++;
+            start2++;
     }
     return 0;
 }
 
-int CompareStringsEnd(const void *struct1, const void *struct2) 
+int CompareStringsEnd(const void *StringStructure1, const void *StringStructure2) 
 {
-    assert(str1 != NULL && str2 != NULL);
+    assert(StringStructure1 != NULL && StringStructure2 != NULL);
 
-    StringPointers structure1 = *(StringPointers *) struct1;
-    StringPointers structure2 = *(StringPointers *) struct2;
+    StringPointers structure1 = *(StringPointers *) StringStructure1;
+    StringPointers structure2 = *(StringPointers *) StringStructure2;
 
     char *start1 = structure1.StartString;
     char *start2 = structure2.StartString;
@@ -116,8 +122,8 @@ void qsort1(void *array, int elements, size_t element_size, int (*comparator) (c
 
         int pivot_index = partition(array, left_index, right_index, element_size, comparator);
 
-        qsort1(array, pivot_index + 1, element_size, comparator);  /*qsort for left elements less then pivot*/
-        qsort1((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator); /*qsort for right elements more then pivot*/
+        qsort(array, pivot_index + 1, element_size, comparator);  /*qsort for left elements less then pivot*/
+        qsort((char *)array + (pivot_index + 1) * element_size, elements - pivot_index - 1, element_size, comparator); /*qsort for right elements more then pivot*/
     }
 }
 
@@ -125,13 +131,12 @@ int partition(void *array, int left_index, int right_index, size_t element_size,
 {
     int middle_index = (right_index + left_index) / 2;   /*search middle index*/
     char *char_array = (char *)array;
-    
+
     void *pivot = char_array + middle_index * element_size; /*pivot == middle element of array*/
     while (left_index <= right_index)
     {
         while (comparator(char_array + element_size * left_index, pivot) < 0)
             left_index++;
-        
         while (comparator(char_array + element_size * right_index, pivot) > 0)
             right_index--; 
         
@@ -141,7 +146,6 @@ int partition(void *array, int left_index, int right_index, size_t element_size,
     /*need for save information about pivot else pivot is change(but he should be const)*/
         if (pivot == char_array + right_index * element_size)
             pivot = char_array + left_index * element_size;
-        
         else if (pivot == char_array + left_index * element_size)
             pivot = char_array + right_index *element_size;
         

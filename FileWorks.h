@@ -1,8 +1,6 @@
 #ifndef FILEWORKS_H
 #define FILEWORKS_H
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
 /** @file
  * @brief Have all function that needed for the works with files(texts)
@@ -12,17 +10,15 @@ struct StringPointers
 {
     char *StartString;
     char *EndString;
+    int NumbStrings;
+    char *buffer;
 };
 
-struct FileStruct
+struct TextInfo
 {
-    struct _stat FileInfo;
-    
-    FILE *ReadFile;
-    FILE *WriteFile;
-    char *buffer;
+    char *TextBuffer;
     int NumbStrings;
-    StringPointers *pointer;
+    StringPointers *TextPointers;
 };
 
 /**
@@ -30,9 +26,9 @@ struct FileStruct
  * @details get info about his size, how much new lines files have, pointers on start, end
  * @param [out] text - struct with all information about text
  * @param [in] FileName
- * @return 1 - if works well 0 - else
+ * @return How much new lines  was read if > 0 works well
  */
-int InitFileStruct(FileStruct *text, const char *FileName);
+int InitTextInfo(TextInfo *text, const char *FileName);
 /**
  * @brief Count new lines("\n")
  * @param [in] buffer - same text that stored in file
@@ -44,18 +40,19 @@ int CountNewLines(char *buffer);
  * @param [out] text
  * @param [out] pointer
  */
-void TextParser(char *text, StringPointers *pointer);
+void TextParser(char *text, StringPointers *TextPointers);
 /**
  * @brief Writing into some file
  * @param [out] text - here stored WriteFile
  * @param [in] FileName
  * @return 1 - if works well 0 - else  
  */
-int WriteIntoFile(FileStruct *text, const char *FileName);
+int OneMoreAlpha(char* StartString, char* EndString);
+int WriteIntoFile(StringPointers *TextPointers, const char *FileName, int NumbStrings);
 /**
  * @brief Destuctor
- * @param text - close and free all allocated and open parameters
+ * @param text - =free all allocated parameters
  */
-void Destructor(FileStruct *text);
+void Destructor(TextInfo *text);
 
 #endif
